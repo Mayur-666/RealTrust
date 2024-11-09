@@ -27,7 +27,8 @@ connect();
 const app = express();
 app.use(
   cors({
-    origin: "*", //chage to frontend url
+    origin: "https://real-trust-tau.vercel.app",
+    optionsSuccessStatus: 200,
   })
 );
 
