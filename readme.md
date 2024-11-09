@@ -9,5 +9,9 @@ There exist routes for landing page ->  "/"
 for admin login -> "/admin-auth"
 for admin panel -> "/admin-page"
 
+You can login to admin page with credentials:
+USERNAME : admin
+PASSWORD : admin
+
 protected routes are also implemented to add admin authentication.
 
