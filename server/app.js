@@ -15,11 +15,12 @@ import { createContact } from "./controllers/contactController.js";
 import { createNewsletter } from "./controllers/newsletterController.js";
 
 //remove in deployment
-process.on("uncaughtException", (err) => {
-  console.log("UNCAUGHT EXCEPTION! 💥 Shutting down...");
-  console.log(err.name, err.message);
-  process.exit(1);
-});
+process.env.DEPLOYMENT == "developement" &&
+  process.on("uncaughtException", (err) => {
+    console.log("UNCAUGHT EXCEPTION! 💥 Shutting down...");
+    console.log(err.name, err.message);
+    process.exit(1);
+  });
 
 connect();
 
@@ -61,10 +62,11 @@ app.listen(PORT, () => {
 });
 
 //remove in deployment
-process.on("unhandledRejection", (err) => {
-  console.log("UNHANDLED REJECTION! 💥 Shutting down...");
-  console.log(err.name, err.message);
-  server.close(() => {
-    process.exit(1);
+process.env.DEPLOYMENT == "developement" &&
+  process.on("unhandledRejection", (err) => {
+    console.log("UNHANDLED REJECTION! 💥 Shutting down...");
+    console.log(err.name, err.message);
+    server.close(() => {
+      process.exit(1);
+    });
   });
-});
